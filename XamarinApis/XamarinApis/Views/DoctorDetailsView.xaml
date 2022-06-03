@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinApis.Views.DoctorDetailsView"
+             xmlns:converters="clr-namespace:XamarinApis.Converters">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConverterFavoritoImages x:Key="converterfavoritos"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Doctor Details"
+                   FontSize="40" TextColor="Blue"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Doctor.Apellido}"
+                   FontSize="25" TextColor="Black"/>
+            <Label Text="{Binding Doctor.Especialidad}"
+                   FontSize="25" TextColor="Blue"/>
+            <Label Text="{Binding Doctor.Salario
+                , StringFormat='Salario: {0}'}"
+                   FontSize="30" TextColor="Green"/>
+            <Label Text="{Binding Doctor.IsFavorite}"
+                   FontSize="50" TextColor="Red"/>
+            <Image WidthRequest="80" HeightRequest="80"
+                   Source="{Binding Doctor.IsFavorite
+                , Converter={StaticResource converterfavoritos}}"/>
+            <Button Text="Eliminar"
+                    TextColor="Red"
+                    Command="{Binding DeleteDoctor}"/>
+            <Button Text="Favorito"
+                    TextColor="Blue"
+                    Command="{Binding SeleccionarFavorito}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
